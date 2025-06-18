@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Careers - Artemis Hospitals</title>
+<!-- Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    :root {
+        --custom-orange-primary: #f77300;
+        --custom-orange-light: #ff9d4c;
+        --custom-orange-dark: #e66a00;
+        --custom-gray-dark: #444444;
+        --custom-gray-medium: #777777;
+        --custom-gray-light: #f5f5f5;
+        --custom-white: #ffffff;
+    }
+    
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: var(--custom-gray-light);
+        color: var(--custom-gray-dark);
+        margin: 0;
+        padding: 0;
+    }
+    
+    .custom-careers-header {
+        background: linear-gradient(135deg, var(--custom-orange-primary), var(--custom-orange-dark));
+        color: var(--custom-white);
+        padding: 3rem 0;
+        text-align: center;
+        border-radius: 0 0 30px 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+    
+    .custom-careers-header h1 {
+        font-weight: 700;
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+    }
+    
+    .custom-careers-header p {
+        font-size: 1.2rem;
+        max-width: 800px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+    
+    .custom-jobs-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 2rem;
+        padding: 0 1rem;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .custom-job-wrapper {
+        flex: 0 0 calc(33.333% - 30px);
+        max-width: calc(33.333% - 30px);
+        display: flex;
+    }
+    
+    @media (max-width: 991px) {
+        .custom-job-wrapper {
+            flex: 0 0 calc(50% - 20px);
+            max-width: calc(50% - 20px);
+        }
+    }
+    
+    @media (max-width: 767px) {
+        .custom-job-wrapper {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+        
+        .custom-jobs-container {
+            gap: 20px;
+        }
+    }
+    
+    .custom-job-card {
+        background-color: var(--custom-white);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        height: 100%;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        border: none;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .custom-job-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    .custom-job-card .custom-card-header {
+        background-color: var(--custom-orange-light);
+        color: var(--custom-white);
+        font-weight: 600;
+        border: none;
+        padding: 1.25rem;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+    
+    .custom-job-card .custom-card-body {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .custom-job-icon {
+        background-color: var(--custom-orange-primary);
+        color: var(--custom-white);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1.5rem;
+        font-size: 1.75rem;
+        box-shadow: 0 5px 15px rgba(247, 115, 0, 0.2);
+    }
+    
+    .custom-job-details {
+        padding: 0.75rem 0;
+        margin-bottom: 0.25rem;
+        border-bottom: 1px solid var(--custom-gray-light);
+        display: flex;
+        align-items: center;
+    }
+    
+    .custom-job-details i {
+        color: var(--custom-orange-primary);
+        margin-right: 0.75rem;
+        width: 20px;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        text-align: center;
+    }
+    
+    .custom-job-details span {
+        font-size: 0.95rem;
+    }
+    
+    .custom-job-card .custom-btn-apply {
+        background-color: var(--custom-orange-primary);
+        color: var(--custom-white);
+        border: none;
+        padding: 0.6rem 1.75rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        margin-top: 1.5rem;
+        cursor: pointer;
+        align-self: center;
+    }
+    
+    .custom-job-card .custom-btn-apply:hover {
+        background-color: var(--custom-orange-dark);
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(247, 115, 0, 0.3);
+    }
+    
+    /* Modal Form Styles */
+    .custom-form-section {
+        background-color: var(--custom-white);
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        padding: 2rem;
+        margin-top: 2rem;
+        display: none;
+        font-family: inherit;
+    }
+    
+    .custom-form-section h3 {
+        color: var(--custom-orange-primary);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+    
+    .custom-form-section h3::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 3px;
+        width: 50px;
+        background-color: var(--custom-orange-primary);
+    }
+    
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        border-color: var(--custom-orange-light);
+        box-shadow: 0 0 0 0.25rem rgba(247, 115, 0, 0.25);
+    }
+    
+    label {
+        color: var(--custom-gray-dark);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 0.25rem;
+        font-size: 1rem;
+    }
+    
+    input, textarea {
+        width: 100%;
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        font-size: 1rem;
+        font-family: inherit;
+        box-sizing: border-box;
+        resize: vertical;
+    }
+    
+    .custom-btn-submit {
+        background-color: var(--custom-orange-primary);
+        color: var(--custom-white);
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+    
+    .custom-btn-submit:hover {
+        background-color: var(--custom-orange-dark);
+    }
+    
+    .custom-btn-back {
+        background-color: var(--custom-gray-medium);
+        color: var(--custom-white);
+        border: none;
+        padding: 0.5rem 1.5rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        font-size: 1rem;
+        margin-right: 10px;
+    }
+    
+    .custom-btn-back:hover {
+        background-color: var(--custom-gray-dark);
+    }
+    
+    .custom-upload-box {
+        border: 2px dashed var(--custom-orange-light);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        margin-bottom: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        color: var(--custom-orange-primary);
+        font-size: 1rem;
+    }
+    
+    .custom-upload-box:hover {
+        border-color: var(--custom-orange-primary);
+        background-color: rgba(247, 115, 0, 0.05);
+    }
+    
+    .custom-upload-icon {
+        font-size: 2rem;
+        color: var(--custom-orange-primary);
+        margin-bottom: 1rem;
+    }
+    
+    #custom-file-name {
+        margin-top: 0.5rem;
+        font-size: 0.9rem;
+        color: var(--custom-gray-medium);
+    }
+    
+    .custom-careers-footer {
+        color: var(--custom-gray-medium);
+        text-align: center;
+        margin-top: 3rem;
+        padding-bottom: 2rem;
+        font-size: 0.9rem;
+    }
+</style>
+</head>
+<body>
+
+<div class="custom-content-wrapper">
+
+    <!-- Breadcrumb Start -->
+  
+    <!-- Breadcrumb End -->
+
+    <div class="custom-careers-header">
+        <h1>Join Our Team</h1>
+        <p>Discover exciting career opportunities and become part of our growing organization. We value talent, passion, and dedication.</p>
+    </div>
+
+    <div class="custom-jobs-container" id="job-listings">
+        <!-- Job Card 1 -->
+        <div class="custom-job-wrapper">
+            <div class="custom-job-card">
+                <div class="custom-card-header">RMO Nurse</div>
+                <div class="custom-card-body ">
+                    <div class="custom-job-icon">
+                        <i class="fas fa-user-nurse"></i>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Multiple Locations</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-briefcase"></i>
+                        <span>2+ years experience</span>
+                    </div>
+                    <p class="mt-3">Join our medical team as an RMO Nurse. We're looking for dedicated professionals with a passion for patient care.</p>
+                    <div class="mt-auto text-center">
+                        <button class="custom-btn-apply" data-bs-toggle="modal" data-bs-target="#applicationModal" data-job="RMO Nurse">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Card 2 -->
+        <div class="custom-job-wrapper">
+            <div class="custom-job-card">
+                <div class="custom-card-header">Consultant</div>
+                <div class="custom-card-body d-flex flex-column">
+                    <div class="custom-job-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Remote / Office</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-briefcase"></i>
+                        <span>3+ years experience</span>
+                    </div>
+                    <p class="mt-3">We're seeking experienced consultants to provide strategic guidance and solutions to our clients.</p>
+                    <div class="mt-auto text-center">
+                        <button class="custom-btn-apply" data-bs-toggle="modal" data-bs-target="#applicationModal" data-job="Consultant">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Job Card 3 -->
+        <div class="custom-job-wrapper">
+            <div class="custom-job-card">
+                <div class="custom-card-header">Billing TPA Manager</div>
+                <div class="custom-card-body d-flex flex-column">
+                    <div class="custom-job-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Head Office</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-clock"></i>
+                        <span>Full-time</span>
+                    </div>
+                    <div class="custom-job-details">
+                        <i class="fas fa-briefcase"></i>
+                        <span>5+ years experience</span>
+                    </div>
+                    <p class="mt-3">Oversee our Third-Party Administrator billing operations and ensure smooth financial processes.</p>
+                    <div class="mt-auto text-center">
+                        <button class="custom-btn-apply" data-bs-toggle="modal" data-bs-target="#applicationModal" data-job="Billing TPA Manager">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Form Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1" aria-labelledby="applicationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: var(--custom-orange-primary); color: var(--custom-white);">
+                    <h3 class="modal-title" id="form-title">Apply for Position</h3>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="job-application-form" class="needs-validation" novalidate>
+                        <input type="hidden" id="job-position" name="position" value="">
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label for="fullname" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                                <div class="invalid-feedback">Please enter your full name</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback">Please enter a valid email address</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                                <div class="invalid-feedback">Please enter your phone number</div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label for="location" class="form-label">Current Location</label>
+                                <input type="text" class="form-control" id="location" name="location">
+                            </div>
+                            
+                            <div class="col-12">
+                                <label class="form-label">Resume/CV</label>
+                                <div class="custom-upload-box" id="upload-box" tabindex="0" role="button" aria-label="Upload Resume or CV">
+                                    <input type="file" id="resume" name="resume" class="d-none" accept=".pdf,.doc,.docx" required>
+                                    <div class="custom-upload-icon">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                    </div>
+                                    <h5>Upload your Resume/CV</h5>
+                                    <p>Drag and drop your file here or click to browse</p>
+                                    <p class="text-muted small">Supported formats: PDF, DOC, DOCX (Max 5MB)</p>
+                                    <div id="custom-file-name"></div>
+                                </div>
+                                <div class="invalid-feedback" style="display: none;" id="resume-feedback">Please upload your resume</div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <label for="cover-letter" class="form-label">Cover Letter (Optional)</label>
+                                <textarea class="form-control" id="cover-letter" name="cover-letter" rows="4"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="custom-btn-back" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="custom-btn-submit" id="submit-application">
+                        <i class="fas fa-paper-plane me-2"></i>Submit Application
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-careers-footer">
+        <p>We're an equal opportunity employer and value diversity at our company.</p>
+    </div>
+</div>
+
+<!-- Bootstrap 5 JS Bundle -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const jobButtons = document.querySelectorAll('.custom-btn-apply');
+        const formTitle = document.getElementById('form-title');
+        const jobPositionInput = document.getElementById('job-position');
+        const uploadBox = document.getElementById('upload-box');
+        const resumeInput = document.getElementById('resume');
+        const fileName = document.getElementById('custom-file-name');
+        const form = document.getElementById('job-application-form');
+        const submitBtn = document.getElementById('submit-application');
+        const applicationModal = document.getElementById('applicationModal');
+        
+        // Initialize Bootstrap modal
+        const modal = new bootstrap.Modal(applicationModal);
+        
+        // Set job position in form when modal opens
+        applicationModal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const position = button.getAttribute('data-job');
+            jobPositionInput.value = position;
+            formTitle.textContent = `Apply for ${position}`;
+        });
+        
+        // Reset form when modal is hidden
+        applicationModal.addEventListener('hidden.bs.modal', function() {
+            form.reset();
+            fileName.textContent = '';
+            uploadBox.style.borderColor = 'var(--custom-orange-light)';
+            document.getElementById('resume-feedback').style.display = 'none';
+        });
+        
+        // Upload box click event
+        uploadBox.addEventListener('click', function() {
+            resumeInput.click();
+        });
+
+        uploadBox.addEventListener('keydown', function(e) {
+          if(e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            resumeInput.click();
+          }
+        });
+        
+        // Display file name when selected
+        resumeInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                fileName.textContent = this.files[0].name;
+                uploadBox.style.borderColor = 'var(--custom-orange-primary)';
+                document.getElementById('resume-feedback').style.display = 'none';
+            } else {
+                fileName.textContent = '';
+            }
+        });
+        
+        // Form submit event
+        submitBtn.addEventListener('click', function() {
+            if (form.checkValidity()) {
+                // Check if resume is uploaded
+                if(!resumeInput.files.length){
+                    document.getElementById('resume-feedback').style.display = 'block';
+                    resumeInput.focus();
+                    return;
+                }
+                // Here you would typically send the form data to your server
+                modal.hide();
+                setTimeout(() => {
+                    alert('Application submitted successfully!');
+                }, 500);
+            } else {
+                form.reportValidity();
+            }
+        });
+        
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadBox.addEventListener(eventName, e => {
+                e.preventDefault();
+                e.stopPropagation();
+            }, false);
+        });
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadBox.addEventListener(eventName, () => {
+                uploadBox.style.borderColor = 'var(--custom-orange-primary)';
+                uploadBox.style.backgroundColor = 'rgba(247, 115, 0, 0.05)';
+            }, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadBox.addEventListener(eventName, () => {
+                uploadBox.style.borderColor = 'var(--custom-orange-light)';
+                uploadBox.style.backgroundColor = 'transparent';
+            }, false);
+        });
+        
+        uploadBox.addEventListener('drop', e => {
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                resumeInput.files = files;
+                fileName.textContent = files[0].name;
+                uploadBox.style.borderColor = 'var(--custom-orange-primary)';
+                document.getElementById('resume-feedback').style.display = 'none';
+            }
+        }, false);
+        
+        // Responsive job wrappers fix (optional)
+        function adjustLayoutForScreenSize() {
+            const jobWrappers = document.querySelectorAll('.custom-job-wrapper');
+            if (window.innerWidth < 992) {
+                jobWrappers.forEach(wrapper => {
+                    wrapper.style.flex = '0 0 calc(50% - 20px)';
+                    wrapper.style.maxWidth = 'calc(50% - 20px)';
+                });
+            } else {
+                jobWrappers.forEach(wrapper => {
+                    wrapper.style.flex = '0 0 calc(33.333% - 30px)';
+                    wrapper.style.maxWidth = 'calc(33.333% - 30px)';
+                });
+            }
+            
+            if (window.innerWidth < 768) {
+                jobWrappers.forEach(wrapper => {
+                    wrapper.style.flex = '0 0 100%';
+                    wrapper.style.maxWidth = '100%';
+                });
+            }
+        }
+        
+        adjustLayoutForScreenSize();
+        window.addEventListener('resize', adjustLayoutForScreenSize);
+    });
+</script>
+</body>
+</html>
